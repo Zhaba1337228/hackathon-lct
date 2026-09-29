@@ -1,0 +1,13 @@
+.kiro
+.mvn
+analysis
+inputs
+target
+.git
+*.zip
+artifacts
+submission
+docs
+scripts
+runtime
+README.md

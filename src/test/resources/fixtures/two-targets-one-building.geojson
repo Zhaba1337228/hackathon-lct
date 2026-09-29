@@ -1,0 +1,11 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {"type":"Feature","properties":{"id":"source-A","object_type":"source"},"geometry":{"type":"Point","coordinates":[37.60000,55.70000]}},
+    {"type":"Feature","properties":{"id":"network-1","object_type":"heat_network","diameter":100},"geometry":{"type":"LineString","coordinates":[[37.60000,55.70000],[37.60100,55.70000]]}},
+    {"type":"Feature","properties":{"id":"chamber-A","object_type":"heat_chamber"},"geometry":{"type":"Point","coordinates":[37.60050,55.70000]}},
+    {"type":"Feature","properties":{"id":"building-A","object_type":"restriction","restriction_type":"oks"},"geometry":{"type":"Polygon","coordinates":[[[37.60200,55.69980],[37.60250,55.69980],[37.60250,55.70020],[37.60200,55.70020],[37.60200,55.69980]]]}},
+    {"type":"Feature","properties":{"id":1,"object_type":"oks_connection_point","flow_tph":2.0},"geometry":{"type":"Point","coordinates":[37.60215,55.70000]}},
+    {"type":"Feature","properties":{"id":"1","object_type":"oks_connection_point","flow_tph":1.5},"geometry":{"type":"Point","coordinates":[37.60235,55.70000]}}
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {"type":"Feature","properties":{"id":"unknown-1","object_type":"restriction","restriction_type":"unknown_barrier"},"geometry":{"type":"LineString","coordinates":[[37.60000,55.70000],[37.60100,55.70000]]}}
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {"type":"Feature","properties":{"id":"road-axis","object_type":"restriction","restriction_type":"road"},"geometry":{"type":"LineString","coordinates":[[37.60000,55.69900],[37.60000,55.70100]]}}
+  ]
+}

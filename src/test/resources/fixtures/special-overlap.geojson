@@ -1,0 +1,8 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {"type":"Feature","properties":{"id":"road","object_type":"restriction","restriction_type":"road"},"geometry":{"type":"Polygon","coordinates":[[[37.60010,55.69990],[37.60020,55.69990],[37.60020,55.70010],[37.60010,55.70010],[37.60010,55.69990]]]}},
+    {"type":"Feature","properties":{"id":"tram","object_type":"restriction","restriction_type":"tram_tracks"},"geometry":{"type":"Polygon","coordinates":[[[37.60015,55.69990],[37.60025,55.69990],[37.60025,55.70010],[37.60015,55.70010],[37.60015,55.69990]]]}},
+    {"type":"Feature","properties":{"id":"cable","object_type":"restriction","restriction_type":"power_cable","width_m":0.20},"geometry":{"type":"LineString","coordinates":[[37.60018,55.69980],[37.60018,55.70020]]}}
+  ]
+}

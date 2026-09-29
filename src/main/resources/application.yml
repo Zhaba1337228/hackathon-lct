@@ -1,0 +1,35 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  application:
+    name: heat-network-routing
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/heatnet}
+    username: ${DATABASE_USER:heatnet}
+    password: ${DATABASE_PASSWORD:heatnet}
+    hikari:
+      initialization-fail-timeout: -1
+  sql:
+    init:
+      mode: always
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+app:
+  calculation:
+    route-search-parallelism: ${APP_CALCULATION_ROUTE_SEARCH_PARALLELISM:4}
+    routing-mode: ${APP_CALCULATION_ROUTING_MODE:visibility}
+  storage:
+    root: ${APP_STORAGE_ROOT:./data/jobs}
+  upload:
+    max-bytes: ${APP_UPLOAD_MAX_BYTES:3000000000}
+  export:
+    max-bytes: ${APP_EXPORT_MAX_BYTES:500000000}
+  jobs:
+    retention-hours: ${APP_JOB_RETENTION_HOURS:24}
+    cleanup-interval-ms: ${APP_JOB_CLEANUP_INTERVAL_MS:60000}
+    cleanup-retry-minutes: ${APP_JOB_CLEANUP_RETRY_MINUTES:5}
+    cleanup-batch-size: ${APP_JOB_CLEANUP_BATCH_SIZE:100}

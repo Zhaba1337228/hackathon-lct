@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Трассировка тепловых сетей</title>
+  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="/map.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark" aria-hidden="true">Т</div>
+    <div>
+      <h1>Трассировка тепловых сетей</h1>
+      <p>Предварительная оценка вариантов технологического присоединения</p>
+    </div>
+    <span id="job-status" class="status-badge" role="status" aria-live="polite">Нет задания</span>
+  </header>
+
+  <main class="workspace">
+    <aside class="sidebar" aria-label="Управление расчётом">
+      <section class="panel">
+        <div class="section-heading"><span class="step">01</span><h2>Набор данных</h2></div>
+        <label class="file-picker" for="dataset-file">
+          <span class="file-icon" aria-hidden="true">↑</span>
+          <span><strong>Загрузить GeoJSON</strong><small>Файл передаётся серверу потоком</small></span>
+          <input id="dataset-file" type="file" accept=".geojson,.json,application/geo+json,application/json">
+        </label>
+        <div class="inline-controls">
+          <input id="job-id" type="text" placeholder="UUID существующего задания" aria-label="Идентификатор задания">
+          <button id="open-job" class="button button-quiet" type="button">Открыть</button>
+        </div>
+        <p id="dataset-info" class="muted">Загрузите набор или откройте задание по ID.</p>
+        <div id="job-error" class="error-box" role="alert" hidden></div>
+      </section>
+
+      <section class="panel">
+        <div class="section-heading"><span class="step">02</span><h2>Область расчёта</h2></div>
+        <p class="muted">Переместите и приблизьте карту, затем зафиксируйте видимую область.</p>
+        <button id="use-map-bounds" class="button button-quiet button-wide" type="button" disabled>Взять текущую область карты</button>
+        <div class="bbox-grid">
+          <label>Запад<input id="bbox-west" inputmode="decimal" type="number" step="any"></label>
+          <label>Юг<input id="bbox-south" inputmode="decimal" type="number" step="any"></label>
+          <label>Восток<input id="bbox-east" inputmode="decimal" type="number" step="any"></label>
+          <label>Север<input id="bbox-north" inputmode="decimal" type="number" step="any"></label>
+        </div>
+        <button id="calculate" class="button button-primary button-wide" type="button" disabled>Рассчитать трассы</button>
+        <div id="progress-message" class="progress-message" aria-live="polite"></div>
+        <label id="trajectory-control" class="trajectory-control" hidden>Проверяемое дерево
+          <select id="trajectory-select" aria-label="Показать дерево одной траектории"></select>
+        </label>
+      </section>
+
+      <section class="panel attempts-panel">
+        <div class="section-heading"><span class="step">↗</span><h2>Ход поиска</h2></div>
+        <p class="muted">Последние попытки подключить здания. Точка показывает место проверки, а не проложенную трубу. Нажмите на попытку, чтобы перейти к ней на карте.</p>
+        <div id="attempt-summary" class="attempt-summary" aria-live="polite">Откройте задание для просмотра попыток.</div>
+        <ol id="attempt-list" class="attempt-list"></ol>
+      </section>
+
+      <section class="panel results-panel">
+        <div class="section-heading"><span class="step">03</span><h2>Варианты</h2></div>
+        <p class="muted">Выберите до трёх рассчитанных вариантов для сравнения на карте.</p>
+        <div id="variant-list" class="variant-list"><span class="muted">Результаты появятся после расчёта.</span></div>
+        <div id="unconnected" class="unconnected" hidden></div>
+      </section>
+
+      <div class="sidebar-footer">Предварительное моделирование. Проектные решения требуют проверки специалистом. Подложка: <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>; интерфейс: <a href="https://leafletjs.com">Leaflet 1.9.4</a>.</div>
+    </aside>
+
+    <section class="map-section" aria-label="Карта объектов и вариантов трассировки">
+      <div class="map-toolbar">
+        <span><i class="live-dot" aria-hidden="true"></i><span id="map-message">Загрузите данные, чтобы увидеть объекты</span></span>
+        <button id="load-more" class="button button-quiet" type="button" hidden>Загрузить ещё объекты</button>
+      </div>
+      <div id="map" role="application" aria-label="Интерактивная карта"></div>
+      <div class="map-legend" aria-label="Легенда карты">
+        <strong>Объекты и трассы</strong>
+        <span><i class="legend-dot legend-source"></i> Источник тепла / ТЭЦ</span>
+        <span><i class="legend-line legend-network"></i> Существующая теплосеть</span>
+        <span><i class="legend-area legend-building"></i> Здания (ОКС)</span>
+        <span><i class="legend-dot legend-target"></i> Точки подключения</span>
+        <span><i class="legend-line legend-variant"></i> Итоговый вариант</span>
+        <span><i class="legend-line legend-preview"></i> Ветвь в проверке</span>
+        <span><i class="legend-line legend-accepted"></i> Одно проверенное дерево</span>
+        <span><i class="legend-dot legend-rejected"></i> Отклонённая попытка</span>
+      </div>
+    </section>
+  </main>
+
+  <script src="/vendor/leaflet/leaflet.js"></script>
+  <script src="/map.js"></script>
+</body>
+</html>
